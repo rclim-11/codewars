@@ -8,22 +8,19 @@ public class WeightSort {
     string result = string.Empty;
     int i=0, j=0;
 
-    //using a do-while loop for the outer loop would be more efficient 
-    for (i=0; i<list.Length; i++) {
+    for (i=0; i<list.Length; i++) {     
       for (j=0; j<list.Length-i-1; j++) {
         if (weight(list[j]) > weight(list[j+1])) {
           string temp = list[j+1];
           list[j+1] = list[j];
           list[j] = temp;
         }
-        //Not sure what ordering as string would mean
-        /*if (weight(list[j]) == weight(list[j+1])) {
-          if (Convert.ToInt32(list[j]) > Convert.ToInt32(list[j+1])) {
-            string temp = list[j+1];
-            list[j+1] = list[j];
-            list[j] = temp;
-          }
-        }*/
+        int n = list[j].Length > list[j+1].Length ? list[j+1].Length : list[j].Length;
+        if (weight(list[j]) == weight(list[j+1]) && String.Compare(list[j], 0, list[j+1], 0, n+1)>0) {
+                string temp = list[j+1];
+                list[j+1] = list[j];
+                list[j] = temp;
+         }
       }
     }
 
